@@ -47,7 +47,7 @@ RUN yarn install
 RUN yarn workspace @calcom/trpc run build
 RUN yarn --cwd packages/embeds/embed-core workspace @calcom/embed-core run build
 RUN yarn --cwd apps/web workspace @calcom/web run copy-app-store-static
-RUN yarn --cwd apps/web workspace @calcom/web run build
+RUN NEXTAUTH_SECRET="${NEXTAUTH_SECRET:-d3faultS3cr3tF0rBu1ld0nly}" CALENDSO_ENCRYPTION_KEY="${CALENDSO_ENCRYPTION_KEY:-d3faultS3cr3tF0rBu1ld0nly}" yarn --cwd apps/web workspace @calcom/web run build
 RUN rm -rf node_modules/.cache .yarn/cache apps/web/.next/cache
 
 FROM node:20 AS builder-two
